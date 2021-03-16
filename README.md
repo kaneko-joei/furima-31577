@@ -15,14 +15,14 @@
 
 ## destination テーブル
 
-| Column       | Type    | Options     |
-| ------------ | ------- | ----------- |
-| user_id      | integer | null: false |
-| family_name  | string  | null: false |
-| first_name   | string  | null: false |
-| post_cord    | string  | null: false |
-| adress       | string  |             |
-| phone_number | string  |             |
+| Column       | Type    | Options                        |
+| ------------ | ------- | ------------------------------ |
+| user_id      | integer | null: false, foreign_key: true |
+| family_name  | string  | null: false                    |
+| first_name   | string  | null: false                    |
+| post_cord    | string  | null: false                    |
+| adress       | string  | null: false                    |
+| phone_number | string  |                                |
 
 ## product テーブル
 
