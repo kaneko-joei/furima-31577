@@ -11,14 +11,14 @@
 | first_name              | string | null: false               |
 | family_name_kana        | string | null: false               |
 | first_name_kana         | string | null: false               |
-| birth_date              | text   | null: false               |
+| birth_date              | date   | null: false               |
 
 has_many :products dependent: :destroy
 belongs_to :destination dependent: :destroy
 
 
 
-## destinations テーブル
+## sendding テーブル
 
 | Column       | Type    | Options                        |
 | ------------ | ------- | ------------------------------ |
@@ -32,29 +32,27 @@ belongs_to :user
 
 ## product テーブル
 
-| Column           | Type      | Options     |
-| ---------------- | --------- | ----------- |
-| name             | string    | null: false |
-| price            | integer   | null: false |
-| description      | text      | null: false |
-| status_id        | integer   | null: false |
-| sipping_cost_id  | integer   | null: false |
-| shipping_days_id | integer   | null: false |
-| user_id          | reference | null: false |
-| category_id      | integer   | null: false |
-| prefecture_id    | integer   | null: false |
+| Column           | Type      | Options                        |
+| ---------------- | --------- | ------------------------------ |
+| name             | string    | null: false                    |
+| price            | integer   | null: false                    |
+| description      | text      | null: false                    |
+| status_id        | integer   | null: false                    |
+| sipping_cost_id  | integer   | null: false                    |
+| shipping_days_id | integer   | null: false                    |
+| user             | reference | null: false, foreign_key: true |
+| category_id      | integer   | null: false                    |
+| prefecture_id    | integer   | null: false                    |
 
 belongs_to :user dependent: :destroy
 belongs_to :category dependent: :destroy
-belongs_to :brand dependent: :destroy
-has_many :images dependent: :destroy
-belongs_to_active_hash :prefecture
+
 
 ## Purchase management テーブル
 
-| Column          | Type      | Options                        |
-| --------------- | -------   | ------------------------------ |
-| user_id         | integer   | null: false, foreign_key: true |
-| product_id      | integer   | null: false                    |
+| Column       | Type      | Options                        |
+| ------------ | -------   | ------------------------------ |
+| user         | integer   | null: false, foreign_key: true |
+| product      | integer   | null: false, foreign_key: true |
 
 has_many :products dependent: :destroy
