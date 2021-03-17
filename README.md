@@ -20,13 +20,15 @@ belongs_to :destination dependent: :destroy
 
 ## sendding テーブル
 
-| Column       | Type    | Options                        |
-| ------------ | ------- | ------------------------------ |
-| family_name  | string  | null: false                    |
-| first_name   | string  | null: false                    |
-| post_cord    | string  | null: false                    |
-| adress       | string  | null: false                    |
-| phone_number | string  | null: false                    |
+| Column        | Type    | Options                        |
+| ------------- | ------- | ------------------------------ |
+| post_cord     | string  | null: false                    |
+| prefecture    | string  | null: false                    |
+| municipality  | string  | null: false                    |
+| adress        | string  | null: false                    |
+| building name | string  | null: false                    |
+| phone_number  | string  | null: false                    |
+
 
 belongs_to :user
 
@@ -55,4 +57,4 @@ belongs_to :category dependent: :destroy
 | user         | refrence  | null: false, foreign_key: true |
 | product      | refrence  | null: false, foreign_key: true |
 
-has_many :products dependent: :destroy
+belong_to :product dependent: :destroy
