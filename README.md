@@ -52,7 +52,7 @@ belongs_to :category dependent: :destroy
 
 | Column       | Type      | Options                        |
 | ------------ | -------   | ------------------------------ |
-| user         | integer   | null: false, foreign_key: true |
-| product      | integer   | null: false, foreign_key: true |
+| user         | refrence  | null: false, foreign_key: true |
+| product      | refrence  | null: false, foreign_key: true |
 
 has_many :products dependent: :destroy
