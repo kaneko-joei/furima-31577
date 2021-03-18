@@ -14,7 +14,7 @@
 | birth_date              | date   | null: false               |
 
 has_many :products dependent: :destroy
-has_many :purchases_management dependent: :destroy
+has_many :purchase_managements dependent: :destroy
 
 
 
@@ -50,7 +50,7 @@ belongs_to :user
 has_one :purchase_management
 
 
-## Purchases_management テーブル
+## Purchase_managements テーブル
 
 | Column       | Type      | Options                        |
 | ------------ | -------   | ------------------------------ |
