@@ -14,7 +14,7 @@
 | birth_date              | date   | null: false               |
 
 has_many :product dependent: :destroy
-has_many :purchase management dependent: :destroy
+has_many :purchase_management dependent: :destroy
 
 
 
@@ -26,11 +26,11 @@ has_many :purchase management dependent: :destroy
 | prefecture_id       | integer   | null: false |
 | municipality        | string    | null: false |
 | adress              | string    | null: false |
-| building name       | string    |             |
+| building_name       | string    |             |
 | phone_number        | string    | null: false |
-| purchase management | reference | null: false,foreign_key: true|
+| purchase_management | reference | null: false,foreign_key: true|
 
-belong_to :purchase management
+belong_to :purchase_management
 
 ## product テーブル
 
@@ -47,10 +47,10 @@ belong_to :purchase management
 | prefecture_id    | integer   | null: false                    |
 
 belongs_to :user 
-has_one :purchase management
-has_one :sendding
+has_one :purchase_management
 
-## Purchase management テーブル
+
+## Purchase_management テーブル
 
 | Column       | Type      | Options                        |
 | ------------ | -------   | ------------------------------ |
@@ -59,4 +59,4 @@ has_one :sendding
 
 belong_to :user 
 belong_to :product 
-belong_to :sendding 
+has_one :sendding 
