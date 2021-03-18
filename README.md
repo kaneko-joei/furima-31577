@@ -13,12 +13,12 @@
 | first_name_kana         | string | null: false               |
 | birth_date              | date   | null: false               |
 
-has_many :product dependent: :destroy
-has_many :purchase_management dependent: :destroy
+has_many :products dependent: :destroy
+has_many :purchases_management dependent: :destroy
 
 
 
-## sendding テーブル
+## senddings テーブル
 
 | Column              | Type      | Options     |
 | ------------------- | --------- | ------------|
