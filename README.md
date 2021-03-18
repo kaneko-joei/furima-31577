@@ -13,8 +13,7 @@
 | first_name_kana         | string | null: false               |
 | birth_date              | date   | null: false               |
 
-has_many :products dependent: :destroy
-belongs_to :destination dependent: :destroy
+has_one :product dependent: :destroy
 
 
 
@@ -23,14 +22,14 @@ belongs_to :destination dependent: :destroy
 | Column        | Type    | Options                        |
 | ------------- | ------- | ------------------------------ |
 | post_cord     | string  | null: false                    |
-| prefecture    | string  | null: false                    |
+| prefecture_id | integer | null: false                    |
 | municipality  | string  | null: false                    |
 | adress        | string  | null: false                    |
-| building name | string  | null: false                    |
+| building name | string  |                                |
 | phone_number  | string  | null: false                    |
 
 
-belongs_to :user
+belongs_to :user dependent: :destroy
 
 ## product テーブル
 
@@ -47,8 +46,6 @@ belongs_to :user
 | prefecture_id    | integer   | null: false                    |
 
 belongs_to :user dependent: :destroy
-belongs_to :category dependent: :destroy
-
 
 ## Purchase management テーブル
 
@@ -57,4 +54,5 @@ belongs_to :category dependent: :destroy
 | user         | refrence  | null: false, foreign_key: true |
 | product      | refrence  | null: false, foreign_key: true |
 
-belong_to :product dependent: :destroy
+belong_to :user dependent: :destroy
+has_one :product dependent: :destroy
