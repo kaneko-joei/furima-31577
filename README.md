@@ -32,7 +32,7 @@ has_many :purchases_management dependent: :destroy
 
 belong_to :purchase_management
 
-## product テーブル
+## products テーブル
 
 | Column           | Type      | Options                        |
 | ---------------- | --------- | ------------------------------ |
@@ -50,7 +50,7 @@ belongs_to :user
 has_one :purchase_management
 
 
-## Purchase_management テーブル
+## Purchases_management テーブル
 
 | Column       | Type      | Options                        |
 | ------------ | -------   | ------------------------------ |
