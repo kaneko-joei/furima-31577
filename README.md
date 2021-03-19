@@ -13,7 +13,7 @@
 
 
 
-## destination テーブル
+## senddings テーブル
 
 | Column       | Type    | Options     |
 | ------------ | ------- | ----------- |
@@ -24,7 +24,7 @@
 | adress       | string  |             |
 | phone_number | string  |             |
 
-## product テーブル
+## products テーブル
 
 | Column           | Type    | Options     |
 | ---------------- | ------- | ----------- |
