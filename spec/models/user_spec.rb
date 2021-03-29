@@ -10,14 +10,8 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
     end
 
-    it 'password:半角英数混合(半角英語のみ)' do
-      @user.password = 'aaaaaaa'
-      @user.valid?
-      expect(@user.errors.full_messages).to include('Password Include both letters and numbers')
-    end
-
     it "passwordが6文字以上であれば登録できること" do
-      user = build(:user, password: "123456", password_confirmation: "123456")
+      user = build(:user, password: "1234aa", password_confirmation: "1234aa")
       user.valid?
       expect(user).to be_valid
     end
@@ -27,6 +21,12 @@ RSpec.describe User, type: :model do
 
 
   context '新規登録がうまくいかないとき'
+   it 'password:半角英数混合(半角英語のみ)' do
+     @user.password = 'aaaaaaa'
+     @user.valid?
+     expect(@user.errors.full_messages).to include('Password Include both letters and numbers')
+   end
+
     it 'nicknameが空では登録できない' do 
       @user.nickname = ''  
       @user.valid?
@@ -74,7 +74,19 @@ RSpec.describe User, type: :model do
     it '@なしでは登録できない' do
       @user.email = 'test.com'
       @user.valid?
-      expect(user.errors.full_messages).to include ""
+      expect(user.errors.full_messages).to include （"e-mail cannot be registered without @"）
+    end
+
+    it 'passwordが英数字のみのとき登録できない' do
+      @user.password = 'aa11'
+      @user.valid?
+      expect(another_user.errors[:email]).to include("Cannot register when password is only alphanumeric")
+    end
+
+    it 'passwordが数値のみのとき登録できない' do
+      @user.password = '111'
+      @user.valid?
+      expect(another_user.errors[:email]).to include("Cannot register when password is only a number")
     end
 
     it 'passwordが空では登録できないこと' do
