@@ -3,89 +3,86 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-end
-
-context '出品できる場合' do
-  it "itemとitem_imageがある場合は保存できること" do
-    expect(build(:item, item_images: [build(:item_image)])).to be_valid
-  end
-end
-
-context '出品できない場合' do
-  it "item_imageがない場合は保存できないこと" do
-    item = build(:product)
-    item.valid?
-    expect(item.errors[:item_images]).to include("can't be blank")
   end
 
-  it "nameがない場合は保存できないこと" do
-    item = build(:item, name: nil, item_images: [build(:item_image)])
-    item.valid?
-    expect(item.errors[:name]).to include("can't be blank")
-  end
+ context '出品できる場合' do
+   it "item,image,name,description,category,status,shipping_cost,shipping_day,prefecture,price,がある場合は保存できること" do
+     expect(@item).to be_valid
+   end
+ end
+ 
 
-  it "descriptionがない場合は保存できないこと" do
-    item = build(:item, desription: nil, item_images: [build(:item_image)])
-    item.valid?
-    expect(item.errors[:desription]).to include("can't be blank")
-  end
+ context '出品できない場合' do
+   it "imageがない場合は保存できないこと" do
+     @item.image = nil
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Image can't be blank")
+   end
 
-  it "category_idがない場合は保存できないこと" do
-    item = build(:item, category_id: nil, item_images: [build(:item_image)])
-    item.valid?
-    expect(product.errors[:category_id]).to include()
-  end
+   it "nameがない場合は保存できないこと" do
+     @item.name = ''
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Name can't be blank")
+   end
 
-  it "status_idがない場合は保存できないこと" do
-    item = build(:item, status_id: nil, item_images: [build(:item_image)])
-    item.valid?
-    expect(product.errors[:status_id]).to include()
-  end
-
-  it "shipping_cost_idがない場合は保存できないこと" do
-    item = build(:item, shipping_cost_id: nil, item_images: [build(:item_image)])
-    item.valid?
-    expect(product.errors[:shipping_cost_id]).to include()
-
-  end
-
-  it "area_idがない場合は保存できないこと" do
-    item = build(:item, infomation: nil, item_images: [build(:item_image)])
-    item.valid?
-    expect(product.errors[:area_id]).to include()
-      end
-
-      it "day_idがない場合は保存できないこと" do
-        item = build(:item, infomation: nil, item_images: [build(:item_image)])
-        item.valid?
-        expect(product.errors[:day_id]).to include()
-      end
-
-      it "priceがない場合は保存できないこと" do
-        item = build(:item, infomation: nil, item_images: [build(:item_image)])
-        item.valid?
-        expect(product.errors[:price]).to include()
-      end
-
-      it "priceが300以下の場合は保存できないこと" do
-        item = build(:item, price: "299", item_images: [build(:item_image)])
-        item.valid?
-        expect(item.errors[:price]).to include()
-      end
-
-      it "priceが9,999,999以上の場合は保存できないこと" do
-        item = build(:item, price: "10000000", item_images: [build(:item_image)])
-        item.valid?
-        expect(item.errors[:price]).to include()
-      end
-        
-      it "user_idがない場合は保存できないこと" do
-        item = build(:item, user_id: nil, item_images: [build(:item_image)])
-        item.valid?
-        
-        expect(item.errors[:user_id]).to include()
-      end
+    it "descriptionがない場合は保存できないこと" do
+      @item.description = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Description can't be blank")
     end
-  end
+
+   it "categoryがない場合は保存できないこと" do
+     @item.category_id = ''
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Category can't be blank")
+   end
+
+   it "statusがない場合は保存できないこと" do
+     @item.status_id = ''
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Status can't be blank")
+   end
+
+   it "shipping_costがない場合は保存できないこと" do
+     @item.shipping_cost_id = ''
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
+   end
+
+   it "prefectureがない場合は保存できないこと" do
+     @item.prefecture_id = ''
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+   end
+
+   it "shipping_dayがない場合は保存できないこと" do
+     @item.shipping_day_id = ''
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+   end
+        
+
+   it "priceがない場合は保存できないこと" do
+     @item.price = ''
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Price can't be blank")
+   end
+
+   it "priceが300以下の場合は保存できないこと" do
+     @item.price = '299'
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+   end
+
+   it "priceが9,999,999以上の場合は保存できないこと" do
+     @item.price = '100000000'
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+   end
+ end
+        
+ 
+
 end
+
 
