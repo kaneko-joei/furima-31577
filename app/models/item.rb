@@ -22,15 +22,12 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :shipping_day_id
     validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999} 
-
-     #空の投稿を保存できないようにする
-     validates :title, :text, presence: true
-
-     #ジャンルの選択が「--」の時は保存できないようにする
-     validates :genre_id, numericality: { other_than: 1 
-
-
  end
+     validates :category_id, numericality: { other_than: 1 }
+     validates :status_id, numericality: { other_than: 1 }
+     validates :shipping_cost_id, numericality: { other_than: 1 }
+     validates :shipping_day_id, numericality: { other_than: 1 }
+
 
 
 

@@ -32,31 +32,31 @@ RSpec.describe Item, type: :model do
     end
 
    it "categoryがない場合は保存できないこと" do
-     @item.category_id = '1'
+     @item.category_id = ''
      @item.valid?
      expect(@item.errors.full_messages).to include("Category can't be blank")
    end
 
    it "statusがない場合は保存できないこと" do
-     @item.status_id = '1'
+     @item.status_id = ''
      @item.valid?
      expect(@item.errors.full_messages).to include("Status can't be blank")
    end
 
    it "shipping_costがない場合は保存できないこと" do
-     @item.shipping_cost_id = '1'
+     @item.shipping_cost_id = ''
      @item.valid?
      expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
    end
 
    it "prefectureがない場合は保存できないこと" do
-     @item.prefecture_id = '1'
+     @item.prefecture_id = ''
      @item.valid?
      expect(@item.errors.full_messages).to include("Prefecture can't be blank")
    end
 
    it "shipping_dayがない場合は保存できないこと" do
-     @item.shipping_day_id = '1'
+     @item.shipping_day_id = ''
      @item.valid?
      expect(@item.errors.full_messages).to include("Shipping day can't be blank")
    end
@@ -90,7 +90,32 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Price is not a number")
   end
+
+  it "category蘭が未選択のidの場合は保存できないこと" do
+    @item.category_id = '1'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Category must be other than 1")
+  end
+
+  it "status蘭が未選択のidの場合は保存できないこと" do
+    @item.status_id = '1'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Status must be other than 1")
+  end
+
+  it "shipping_cost蘭が未選択のidの場合は保存できないこと" do
+    @item.shipping_cost_id = '1'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Shipping cost must be other than 1")
+  end
+
+  it "shipping_day蘭が未選択のidの場合は保存できないこと" do
+    @item.shipping_day_id = '1'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
+  end
  end
+
         
  
 
