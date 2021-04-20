@@ -110,6 +110,12 @@ RSpec.describe Item, type: :model do
     expect(@item.errors.full_messages).to include("Shipping cost must be other than 1")
   end
 
+  it "prefecture蘭が未選択のidの場合は保存できないこと" do
+    @item.prefecture_id = '1'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+  end
+
   it "shipping_day蘭が未選択のidの場合は保存できないこと" do
     @item.shipping_day_id = '1'
     @item.valid?
