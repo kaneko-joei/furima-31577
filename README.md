@@ -42,7 +42,7 @@ belong_to :purchase_management
 | status_id        | integer   | null: false                    |
 | sipping_cost_id  | integer   | null: false                    |
 | shipping_days_id | integer   | null: false                    |
-| user             | reference | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 | category_id      | integer   | null: false                    |
 | prefecture_id    | integer   | null: false                    |
 
