@@ -93,31 +93,31 @@ RSpec.describe Item, type: :model do
   end
 
   it "category蘭が未選択のidの場合は保存できないこと" do
-    @item.category_id = '1'
+    @item.category_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Category must be other than 1")
   end
 
   it "status蘭が未選択のidの場合は保存できないこと" do
-    @item.status_id = '1'
+    @item.status_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Status must be other than 1")
   end
 
   it "shipping_cost蘭が未選択のidの場合は保存できないこと" do
-    @item.shipping_cost_id = '1'
+    @item.shipping_cost_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping cost must be other than 1")
   end
 
   it "prefecture蘭が未選択のidの場合は保存できないこと" do
-    @item.prefecture_id = '1'
+    @item.prefecture_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
   end
 
   it "shipping_day蘭が未選択のidの場合は保存できないこと" do
-    @item.shipping_day_id = '1'
+    @item.shipping_day_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
   end
