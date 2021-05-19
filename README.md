@@ -40,7 +40,7 @@ belong_to :purchase_management
 | price            | integer   | null: false                    |
 | description      | text      | null: false                    |
 | status_id        | integer   | null: false                    |
-| sipping_cost_id  | integer   | null: false                    |
+| shipping_cost_id | integer   | null: false                    |
 | shipping_days_id | integer   | null: false                    |
 | user             | references | null: false, foreign_key: true |
 | category_id      | integer   | null: false                    |
