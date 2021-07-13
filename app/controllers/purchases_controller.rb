@@ -32,8 +32,8 @@ class PurchasesController < ApplicationController
         )
         @purchase_address.save  
         return redirect_to root_path
-    else
-        render "index"
+      else
+        render :index
     end
 
   end
