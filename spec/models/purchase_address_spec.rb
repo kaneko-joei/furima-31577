@@ -9,7 +9,7 @@ RSpec.describe PurchaseAddress, type: :model do
   end
 
  context '購入できる場合' do
-   it "postal_code, prefecture_id, city, addresses, building_name, phone_number, user_id, item_id,がある場合は保存できること" do
+   it "postal_code, prefecture_id, city, addresses, phone_number, user_id, item_id,がある場合は保存できること" do
      expect(@address).to be_valid
    end
  end
@@ -44,12 +44,6 @@ RSpec.describe PurchaseAddress, type: :model do
      @address.addresses = ''
      @address.valid?
      expect(@address.errors.full_messages).to include("Addresses can't be blank")
-   end
-
-   it "building_nameがない場合は保存できないこと" do
-      @address.building_name = ''
-      @address.valid?
-      expect(@address.errors.full_messages).to include("Building name can't be blank")
    end
 
    it "phone_numberがない場合は保存できないこと" do
