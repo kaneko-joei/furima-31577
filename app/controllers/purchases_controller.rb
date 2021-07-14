@@ -1,18 +1,13 @@
 class PurchasesController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :set_find, only: [:index, :create]
+  before_action :redirect_to_index, only: [:index, :create]
 
 
 
   def index
     
     @purchase_address = PurchaseAddress.new
-
-    redirect_to root_path unless @item.purchase_management == nil 
-
-    redirect_to root_path if current_user == @item.user
-
-
 
   end
 
@@ -51,6 +46,12 @@ class PurchasesController < ApplicationController
         currency: 'jpy'                 # 通貨の種類（日本円）
         
         )
+  end
+
+  def redirect_to_index
+
+    redirect_to root_path if current_user == @item.user || @item.purchase_management != nil 
+
   end
 
   

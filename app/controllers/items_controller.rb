@@ -3,30 +3,10 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item,only: [:show,:edit,:update,:destroy]
   before_action :item_seller_confirmation,only: [:edit,:update,:destroy]
-  before_action :find_item, only: :order
-
-  
-
-
+ 
   def index
     @items = Item.includes(:user).order("created_at DESC")
   end
-
-  # def order 
-  #   redirect_to new_card_path and return unless current_user.card.present?
-
-  #   Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 環境変数を読み込む
-  #   customer_token = current_user.card.customer_token # ログインしているユーザーの顧客トークンを定義
-  #   Payjp::Charge.create(
-  #     amount: @item.price, # 商品の値段
-  #     customer: customer_token, # 顧客のトークン
-  #     currency: 'jpy' # 通貨の種類（日本円）
-  #   )
-
-  #   ItemOrder.create(item_id: params[:id]) # 商品のid情報を「item_id」として保存する
-
-  #   redirect_to root_path
-  # end
 
   
   def new
@@ -72,7 +52,8 @@ class ItemsController < ApplicationController
 
 
   def item_seller_confirmation
-    redirect_to root_path unless current_user.id == @item.user_id
+    redirect_to root_path unless current_user.id == @item.user_id || @item.purchase_management != nil 
+
   end
 
   def find_item
