@@ -12,7 +12,14 @@ RSpec.describe PurchaseAddress, type: :model do
    it "postal_code, prefecture_id, city, addresses, phone_number, user_id, item_id,がある場合は保存できること" do
      expect(@address).to be_valid
    end
- end
+ 
+
+   it "building_nameが無くても登録できる" do
+      @address.building_name = ''
+      expect(@address).to be_valid
+   end
+  end
+
  
 
  context '購入できない場合' do
@@ -23,13 +30,13 @@ RSpec.describe PurchaseAddress, type: :model do
    end
 
    it "postal_codeにハイフンがない場合は保存できないこと" do
-    @address.postal_code = '-'
-    @address.valid?
-    expect(@address.errors.full_messages).to include("Postal code Include hyphen(-)")
-  end
+      @address.postal_code = '1112222'
+      @address.valid?
+      expect(@address.errors.full_messages).to include("Postal code Include hyphen(-)")
+   end
 
    it "prefecture_idがない場合は保存できないこと" do
-     @address.prefecture_id = ''
+     @address.prefecture_id = '1'
      @address.valid?
      expect(@address.errors.full_messages).to include("Prefecture can't be blank")
    end
@@ -52,6 +59,18 @@ RSpec.describe PurchaseAddress, type: :model do
      expect(@address.errors.full_messages).to include("Phone number can't be blank")
    end
 
+    it "12桁以上では登録できないこと" do
+      @address.phone_number = '1112223334445'
+      @address.valid?
+      expect(@address.errors.full_messages).to include("Phone number is invalid.")
+    end
+
+    it "英数混合では登録できないこと" do
+      @address.phone_number = 'aaaaaaa111111'
+      @address.valid?
+      expect(@address.errors.full_messages).to include("Phone number is invalid.")
+    end 
+      
    it "user_idがない場合は保存できないこと" do
      @address.user_id = ''
      @address.valid?
@@ -62,6 +81,12 @@ RSpec.describe PurchaseAddress, type: :model do
      @address.item_id = ''
      @address.valid?
      expect(@address.errors.full_messages).to include("Item can't be blank")
+   end
+
+   it "tokenが空では登録できない。" do
+     @address.token = ''
+     @address.valid?
+     expect(@address.errors.full_messages).to include("Token can't be blank")
    end
  end
 end

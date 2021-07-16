@@ -16,8 +16,8 @@ const pay = () => {
       exp_year: `20${formData.get("purchase_address[card_exp_year]")}`,   // 有効期限の年
     };
     Payjp.createToken(card, (status, response) => {
-      // console.log(status);
-      console.log("a")
+      
+      
       if (status === 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");   //idを元に要素を取得
