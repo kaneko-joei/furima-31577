@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
 
 
   def item_seller_confirmation
-    redirect_to root_path unless current_user.id == @item.user_id || @item.purchase_management != nil 
+    redirect_to root_path if current_user.id != @item.user_id || @item.purchase_management != nil 
 
   end
 
