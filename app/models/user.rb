@@ -4,6 +4,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :items
+         has_one :address
+         has_one :card, dependent: :destroy
 
          with_options presence: true do
           validates :nickname

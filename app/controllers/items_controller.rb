@@ -3,14 +3,12 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item,only: [:show,:edit,:update,:destroy]
   before_action :item_seller_confirmation,only: [:edit,:update,:destroy]
-
-  
-
-
+ 
   def index
     @items = Item.includes(:user).order("created_at DESC")
   end
 
+  
   def new
     @item = Item.new
   end
@@ -52,13 +50,15 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:image,:name, :price, :description, :status_id, :shipping_cost_id, :shipping_day_id, :category_id, :prefecture_id).merge(user_id: current_user.id)
   end
 
-  
-   def set_item
-     @item = Item.find(params[:id])
-   end
 
   def item_seller_confirmation
-    redirect_to root_path unless current_user.id == @item.user_id
+    redirect_to root_path if current_user.id != @item.user_id || @item.purchase_management != nil 
+
   end
+
+  def set_item
+    @item = Item.find(params[:id]) 
+  end
+
     
 end

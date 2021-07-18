@@ -18,7 +18,7 @@ has_many :purchase_managements dependent: :destroy
 
 
 
-## senddings テーブル
+## address テーブル
 
 | Column              | Type      | Options     |
 | ------------------- | --------- | ------------|
@@ -32,7 +32,7 @@ has_many :purchase_managements dependent: :destroy
 
 belong_to :purchase_management
 
-## products テーブル
+## item テーブル
 
 | Column           | Type      | Options                        |
 | ---------------- | --------- | ------------------------------ |
@@ -55,8 +55,8 @@ has_one :purchase_management
 | Column       | Type      | Options                        |
 | ------------ | -------   | ------------------------------ |
 | user         | refrence  | null: false, foreign_key: true |
-| product      | refrence  | null: false, foreign_key: true |
+| item         | refrence  | null: false, foreign_key: true |
 
 belong_to :user 
-belong_to :product 
-has_one :sendding 
+belong_to :item 
+has_one :address 
