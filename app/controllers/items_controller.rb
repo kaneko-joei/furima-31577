@@ -8,7 +8,6 @@ class ItemsController < ApplicationController
     @items = Item.includes(:user).order("created_at DESC")
   end
 
-  
   def new
     @item = Item.new
   end
@@ -59,6 +58,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id]) 
   end
-
-    
 end
