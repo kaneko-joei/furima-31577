@@ -17,7 +17,6 @@ has_many :products dependent: :destroy
 has_many :purchase_managements dependent: :destroy
 
 
-
 ## address テーブル
 
 | Column              | Type      | Options     |
