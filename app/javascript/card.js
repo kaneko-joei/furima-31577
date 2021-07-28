@@ -19,18 +19,18 @@ const pay = () => {
       
       
       if (status === 200) {
+        
         const token = response.id;
         const renderDom = document.getElementById("charge-form");   //idを元に要素を取得
         const tokenObj = `<input value=${token} name='token' type="hidden">`;   //paramsの中にトークンを含める
         renderDom.insertAdjacentHTML("beforeend", tokenObj);  //フォームの一番最後に要素を追加
-
+      }   
         document.getElementById("card-number").removeAttribute("name");
         document.getElementById("card-cvc").removeAttribute("name");
         document.getElementById("card-exp-month").removeAttribute("name");
         document.getElementById("card-exp-year").removeAttribute("name");
 
         document.getElementById("charge-form").submit();
-      }   
     });
   });
 };
